@@ -4,7 +4,6 @@ CodeContextExtractor is a local-only CLI that captures a deterministic snapshot 
 
 ## Why it exists
 - Developers need a clean, reliable way to send project context to AI tools
-- Corporate environments require strict, local-only workflows
 - Repositories contain secrets, binaries, and noise that should be skipped by default
 
 ## Who it is for
@@ -22,6 +21,39 @@ npx --no-install code-context extract . --verbose
 The output is written to `.code-context/` with a timestamped filename like:
 ```
 .code-context/<root>_context_YYYY-MM-DD_HHMMSS.txt
+```
+
+## npm and npx (for beginners)
+- `npm` is the package manager that installs tools and libraries.
+- `npx` runs a tool. If it is not installed locally, it will try to download it.
+- `--no-install` tells `npx` to only use what is already installed and skip downloads.
+
+In this repo, `code-context` is not published to npm yet, so `npx` needs `--no-install` or a direct `node dist/cli.js` call.
+
+## User journey (example)
+You want to generate a context file for a project at `C:\projects\MyNewProject`.
+
+### Step 1: Install CodeContextExtractor (one time)
+```bash
+git clone https://github.com/Rwstrobe/CodeContextExtractor.git
+cd CodeContextExtractor
+npm install
+npm run build
+```
+
+### Step 2: Go to your project folder
+```bash
+cd C:\projects\MyNewProject
+```
+
+### Step 3: Generate the context file
+```bash
+npx --no-install code-context extract . --verbose
+```
+
+The output will be saved to:
+```
+.\.code-context\MyNewProject_context_YYYY-MM-DD_HHMMSS.txt
 ```
 
 ## Install from GitHub (beginner-friendly)

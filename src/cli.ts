@@ -20,16 +20,30 @@ async function getVersion(): Promise<string> {
 
 async function main(): Promise<void> {
   const program = new Command();
-  program.name('code-context').description('Extract codebase context to a single file.');
+  program
+    .name('code-context')
+    .description(
+      'Create a deterministic context file from a local codebase (folder tree + file contents).'
+    );
   const version = await getVersion();
   program.version(version);
+  program.addHelpText(
+    'after',
+    `
+Examples:
+  code-context extract . --verbose
+  code-context extract . --format md --depth 3
+  code-context extract C:\\projects\\MyNewProject --max-bytes 200000
+`
+  );
 
   program
     .command('extract')
     .argument('[path]', 'Root path', '.')
-    .option('--out <file>', 'Output file')
+    .description('Generate a single context file from the target folder.')
+    .option('--out <file>', 'Output file path (defaults to .code-context/<root>_context_...)')
     .option('--format <text|md>', 'Output format', 'text')
-    .option('--depth <n>', 'Tree depth', (value) => parseInt(value, 10), 4)
+    .option('--depth <n>', 'Folder tree depth', (value) => parseInt(value, 10), 4)
     .option('--include <glob>', 'Include glob', collect, [])
     .option('--exclude <glob>', 'Exclude glob', collect, [])
     .option('--max-bytes <n>', 'Max file size in bytes', (value) => parseInt(value, 10), 500000)
