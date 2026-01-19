@@ -24,7 +24,7 @@ The output is written to `.code-context/` with a timestamped filename like:
 ```
 
 ## Important: .gitignore your outputs
-> **Warning**  
+> **Warning ⚠️**  
 > CodeContextExtractor writes files into a `.code-context/` folder inside your project root. If that folder is not ignored, you may accidentally commit and push your context exports.
 
 Add this line to your project's `.gitignore`:
