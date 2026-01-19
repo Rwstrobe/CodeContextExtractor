@@ -1,6 +1,6 @@
 node_modules
 dist
 coverage
-.code-context
+code-context
 .DS_Store
 *.log

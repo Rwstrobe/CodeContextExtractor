@@ -32,7 +32,7 @@ export const DEFAULT_EXCLUDES: string[] = [
   'dist/**',
   'build/**',
   'out/**',
-  '.code-context/**',
+  'code-context/**',
   '.next/**',
   '.turbo/**',
   '.git/**',
@@ -122,7 +122,7 @@ function buildAutoOutFile(rootPath: string, format: OutputFormat): string {
   ].join('-');
   const time = [pad(now.getHours()), pad(now.getMinutes()), pad(now.getSeconds())].join('');
   return path.join(
-    '.code-context',
+    'code-context',
     `${rootName}_context_${stamp}_${time}.${ext}`
   );
 }

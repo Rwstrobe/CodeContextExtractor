@@ -16,9 +16,9 @@ CodeContextExtractor is a local-only CLI that captures a deterministic snapshot 
 npx code-context-extractor extract . --verbose
 ```
 
-The output is written to `.code-context/` with a timestamped filename like:
+The output is written to `code-context/` with a timestamped filename like:
 ```
-.code-context/<root>_context_YYYY-MM-DD_HHMMSS.txt
+code-context/<root>_context_YYYY-MM-DD_HHMMSS.txt
 ```
 
 ## Install from npm
@@ -28,11 +28,11 @@ npx code-context-extractor extract C:\projects\MyNewProject --verbose
 
 ## Important: .gitignore your outputs
 > **Warning ⚠️**  
-> CodeContextExtractor writes files into a `.code-context/` folder inside your project root. If that folder is not ignored, you may accidentally commit and push your context exports.
+> CodeContextExtractor writes files into a `code-context/` folder inside your project root. If that folder is not ignored, you may accidentally commit and push your context exports.
 
 Add this line to your project's `.gitignore`:
 ```
-.code-context/
+code-context/
 ```
 
 ## npm and npx (for beginners)
@@ -64,7 +64,7 @@ code-context-extractor extract . --verbose
 
 The output will be saved to:
 ```
-.\.code-context\MyNewProject_context_YYYY-MM-DD_HHMMSS.txt
+.\code-context\MyNewProject_context_YYYY-MM-DD_HHMMSS.txt
 ```
 
 ### macOS/Linux variant
@@ -75,7 +75,7 @@ code-context-extractor extract . --verbose
 ```
 The output will be saved to:
 ```
-./.code-context/MyNewProject_context_YYYY-MM-DD_HHMMSS.txt
+./code-context/MyNewProject_context_YYYY-MM-DD_HHMMSS.txt
 ```
 
 ## Install from GitHub (beginner-friendly)
@@ -118,7 +118,7 @@ node dist/cli.js extract . --verbose
 - Streaming output (does not load large files into memory)
 - Conservative redaction enabled by default
 - Optional Markdown output
-- Automatic output folder `.code-context/`
+- Automatic output folder `code-context/`
 
 ## Commands
 ### Extract
@@ -132,7 +132,7 @@ code-context-extractor extract ./project --format md --depth 3 --verbose
 
 ## Options
 ```bash
---out <file>            Output file (default: .code-context/<root>_context_YYYY-MM-DD_HHMMSS.txt)
+--out <file>            Output file (default: code-context/<root>_context_YYYY-MM-DD_HHMMSS.txt)
 --format <text|md>      Output format (default: text)
 --depth <n>             Tree depth (default: 4)
 --include <glob>        Include glob (repeatable)
@@ -173,7 +173,7 @@ node_modules
 dist
 build
 out
-.code-context
+code-context
 .next
 .turbo
 .git
@@ -196,7 +196,7 @@ id_ed25519
 Use an optional JSON file (example: `example-config.json`) to set defaults.
 ```json
 {
-  "outFile": ".code-context/project_context_2026-01-19_145227.txt",
+  "outFile": "code-context/project_context_2026-01-19_145227.txt",
   "format": "text",
   "depth": 4,
   "include": [],
