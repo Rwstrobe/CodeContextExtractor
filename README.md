@@ -23,6 +23,14 @@ The output is written to `.code-context/` with a timestamped filename like:
 .code-context/<root>_context_YYYY-MM-DD_HHMMSS.txt
 ```
 
+## Important: .gitignore your outputs
+CodeContextExtractor writes files into a `.code-context/` folder inside your project root. If that folder is not ignored, you may accidentally commit and push your context exports.
+
+Add this line to your project's `.gitignore`:
+```
+.code-context/
+```
+
 ## npm and npx (for beginners)
 - `npm` is the package manager that installs tools and libraries.
 - `npx` runs a tool. If it is not installed locally, it will try to download it.
