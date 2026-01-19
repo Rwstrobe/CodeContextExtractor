@@ -97,11 +97,15 @@ node dist/cli.js extract . --verbose
 ## Commands
 ### Extract
 ```bash
-code-context extract [path]
+npx --no-install code-context extract [path]
 ```
 Example:
 ```bash
-code-context extract ./project --format md --depth 3 --verbose
+npx --no-install code-context extract ./project --format md --depth 3 --verbose
+```
+If you installed the CLI globally (for example via `npm link` or a future npm publish), you can run:
+```bash
+code-context extract [path]
 ```
 
 ## Options
