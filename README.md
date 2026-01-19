@@ -65,6 +65,17 @@ The output will be saved to:
 .\.code-context\MyNewProject_context_YYYY-MM-DD_HHMMSS.txt
 ```
 
+### macOS/Linux variant
+You can follow the same steps with a Unix-style path:
+```bash
+cd ~/projects/MyNewProject
+npx --no-install code-context extract . --verbose
+```
+The output will be saved to:
+```
+./.code-context/MyNewProject_context_YYYY-MM-DD_HHMMSS.txt
+```
+
 ## Install from GitHub (beginner-friendly)
 1. Clone the repository:
 ```bash
