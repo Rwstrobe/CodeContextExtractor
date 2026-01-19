@@ -1,0 +1,10 @@
+{
+  "outFile": "code-context.txt",
+  "format": "text",
+  "depth": 4,
+  "include": [],
+  "exclude": [],
+  "maxBytes": 500000,
+  "redact": true,
+  "respectGitignore": true
+}
