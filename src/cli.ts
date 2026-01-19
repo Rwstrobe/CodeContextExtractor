@@ -21,7 +21,7 @@ async function getVersion(): Promise<string> {
 async function main(): Promise<void> {
   const program = new Command();
   program
-    .name('code-context')
+    .name('code-context-extractor')
     .description(
       'Create a deterministic context file from a local codebase (folder tree + file contents).'
     );
@@ -31,9 +31,9 @@ async function main(): Promise<void> {
     'after',
     `
 Examples:
-  code-context extract . --verbose
-  code-context extract . --format md --depth 3
-  code-context extract C:\\projects\\MyNewProject --max-bytes 200000
+  code-context-extractor extract . --verbose
+  code-context-extractor extract . --format md --depth 3
+  code-context-extractor extract C:\\projects\\MyNewProject --max-bytes 200000
 `
   );
 

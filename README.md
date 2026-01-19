@@ -15,7 +15,7 @@ CodeContextExtractor is a local-only CLI that captures a deterministic snapshot 
 ```bash
 npm install
 npm run build
-npx --no-install code-context extract . --verbose
+npx --no-install code-context-extractor extract . --verbose
 ```
 
 The output is written to `.code-context/` with a timestamped filename like:
@@ -37,7 +37,7 @@ Add this line to your project's `.gitignore`:
 - `npx` runs a tool. If it is not installed locally, it will try to download it.
 - `--no-install` tells `npx` to only use what is already installed and skip downloads.
 
-In this repo, `code-context` is not published to npm yet, so `npx` needs `--no-install` or a direct `node dist/cli.js` call.
+In this repo, `code-context-extractor` is not published to npm yet, so `npx` needs `--no-install` or a direct `node dist/cli.js` call.
 
 ## User journey (example)
 You want to generate a context file for a project at `C:\projects\MyNewProject`.
@@ -57,7 +57,7 @@ cd C:\projects\MyNewProject
 
 ### Step 3: Generate the context file
 ```bash
-npx --no-install code-context extract . --verbose
+npx --no-install code-context-extractor extract . --verbose
 ```
 
 The output will be saved to:
@@ -69,7 +69,7 @@ The output will be saved to:
 You can follow the same steps with a Unix-style path:
 ```bash
 cd ~/projects/MyNewProject
-npx --no-install code-context extract . --verbose
+npx --no-install code-context-extractor extract . --verbose
 ```
 The output will be saved to:
 ```
@@ -95,7 +95,7 @@ npm run build
 ```
 5. Run the extractor:
 ```bash
-npx --no-install code-context extract . --verbose
+npx --no-install code-context-extractor extract . --verbose
 ```
 
 If you prefer, you can run the built CLI directly:
@@ -117,15 +117,15 @@ node dist/cli.js extract . --verbose
 ## Commands
 ### Extract
 ```bash
-npx --no-install code-context extract [path]
+npx --no-install code-context-extractor extract [path]
 ```
 Example:
 ```bash
-npx --no-install code-context extract ./project --format md --depth 3 --verbose
+npx --no-install code-context-extractor extract ./project --format md --depth 3 --verbose
 ```
 If you installed the CLI globally (for example via `npm link` or a future npm publish), you can run:
 ```bash
-code-context extract [path]
+code-context-extractor extract [path]
 ```
 
 ## Options
@@ -161,7 +161,7 @@ Redaction is enabled by default to reduce accidental secret leakage. It targets:
 
 Disable redaction only when you are sure the output is safe:
 ```bash
-code-context extract . --no-redact
+code-context-extractor extract . --no-redact
 ```
 
 ## Default excludes
@@ -207,7 +207,7 @@ Use an optional JSON file (example: `example-config.json`) to set defaults.
 
 Use it like this:
 ```bash
-code-context extract . --config example-config.json
+code-context-extractor extract . --config example-config.json
 ```
 
 ## Safety posture
@@ -224,3 +224,4 @@ npm test
 
 ## License
 MIT
+

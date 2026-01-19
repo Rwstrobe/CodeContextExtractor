@@ -1,12 +1,12 @@
 {
-  "name": "code-context",
+  "name": "code-context-extractor",
   "version": "0.1.0",
   "description": "Local-only CLI tool to extract codebase context into a single text or Markdown file.",
   "license": "MIT",
   "author": "Open Source Contributors",
   "type": "commonjs",
   "bin": {
-    "code-context": "dist/cli.js"
+    "code-context-extractor": "dist/cli.js"
   },
   "main": "dist/cli.js",
   "files": [
