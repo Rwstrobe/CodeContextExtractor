@@ -79,7 +79,7 @@ The output will be saved to:
 ## Install from GitHub (beginner-friendly)
 1. Clone the repository:
 ```bash
-git clone https://github.com/<your-org-or-user>/CodeContextExtractor.git
+git clone https://github.com/Rwstrobe/CodeContextExtractor.git
 ```
 2. Enter the project folder:
 ```bash
