@@ -41,4 +41,28 @@ describe('scan', () => {
     const included = result.files.map((file) => file.relativePath);
     expect(included).toEqual(['a.txt', 'b.txt', 'src/c.txt']);
   });
+
+  it('excludes lock files by default', async () => {
+    const root = await setupFixture();
+    await fs.writeFile(path.join(root, 'package-lock.json'), '{}');
+    await fs.writeFile(path.join(root, 'yarn.lock'), 'lock');
+    await fs.writeFile(path.join(root, 'pnpm-lock.yaml'), 'lock');
+    await fs.writeFile(path.join(root, 'bun.lockb'), 'lock');
+    const result = await scan(root, {
+      include: [],
+      exclude: [],
+      maxBytes: 1000,
+      respectGitignore: false
+    });
+    const included = result.files.map((file) => file.relativePath);
+    expect(included).not.toContain('package-lock.json');
+    expect(included).not.toContain('yarn.lock');
+    expect(included).not.toContain('pnpm-lock.yaml');
+    expect(included).not.toContain('bun.lockb');
+    const skipped = result.skipped.map((file) => file.relativePath);
+    expect(skipped).toContain('package-lock.json');
+    expect(skipped).toContain('yarn.lock');
+    expect(skipped).toContain('pnpm-lock.yaml');
+    expect(skipped).toContain('bun.lockb');
+  });
 });

@@ -180,6 +180,13 @@ code-context
 .idea
 .vscode
 coverage
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb
+.npmrc
+.yarnrc
+.yarnrc.yml
 *.lock
 *.log
 *.pem
@@ -191,6 +198,8 @@ secrets.*
 id_rsa
 id_ed25519
 ```
+
+Lock files are excluded by default because they are machine-generated, often large, and typically add little architectural context.
 
 ## Configuration file
 Use an optional JSON file (example: `example-config.json`) to set defaults.
