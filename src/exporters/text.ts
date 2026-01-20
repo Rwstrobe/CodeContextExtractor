@@ -1,5 +1,6 @@
 import { Config } from '../config';
 import { FileEntry, ScanResult } from '../scanner';
+import { summarizeSkipped } from './skipSummary';
 import { buildTreeLines } from './tree';
 import { streamFileContents, writeText } from './writer';
 
@@ -73,9 +74,15 @@ export async function exportText(
   if (result.skipped.length === 0) {
     await writeText(output, '(none)\n');
   } else {
-    for (const skipped of result.skipped) {
-      await writeText(output, `${skipped.relativePath} - ${skipped.reason}\n`);
-    }
+    const summary = summarizeSkipped(result.skipped);
+    const reasons = Object.entries(summary.byReason)
+      .map(([reason, count]) => `${reason} (${count})`)
+      .join(', ');
+    const roots = summary.topRoots.map((root) => `${root.name} (${root.count})`).join(', ');
+
+    await writeText(output, `Total: ${summary.total}\n`);
+    await writeText(output, `By reason: ${reasons}\n`);
+    await writeText(output, `Top skipped roots: ${roots}\n`);
   }
   await writeText(output, '\nFiles\n');
   for (const file of result.files) {
