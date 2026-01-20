@@ -4,3 +4,4 @@ coverage
 code-context
 .DS_Store
 *.log
+*.tgz
