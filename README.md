@@ -12,19 +12,25 @@ CodeContextExtractor is a local-only CLI that captures a deterministic snapshot 
 - Anyone who shares code with AI systems and wants safe defaults
 
 ## Quick start
+1. Open a terminal at your project root (the folder you want to scan).  
+   Example on Windows:
+```bash
+cd C:\projects\MyNewProject
+```
+2. Run the command (npx will install on first use if needed):
 ```bash
 npx code-context-extractor extract . --verbose
 ```
-
-The output is written to `code-context/` with a timestamped filename like:
+3. Open the `code-context/` folder in your project (for example: `C:\projects\MyNewProject\code-context`).
+4. Locate the newest file, named like:
 ```
 code-context/<root>_context_YYYY-MM-DD_HHMMSS.txt
 ```
-
-## Install from npm
-```bash
-npx code-context-extractor extract C:\projects\MyNewProject --verbose
+Example:
 ```
+code-context/MyNewProject_context_2026-01-20_145743.txt
+```
+5. Paste that file into your AI tool when you want it to understand the codebase.
 
 ## Important: .gitignore your outputs
 > **Warning ⚠️**  
@@ -35,15 +41,7 @@ Add this line to your project's `.gitignore`:
 code-context/
 ```
 
-## npm and npx (for beginners)
-- `npm` is the package manager that installs tools and libraries.
-- `npx` runs a tool. If it is not installed locally, it will try to download it.
-- `npx` is great for one-off CLI runs without a global install.
-
-## User journey (example)
-You want to generate a context file for a project at `C:\projects\MyNewProject`.
-
-### Step 1: Install CodeContextExtractor (one time)
+## Install from GitHub (optional)
 ```bash
 git clone https://github.com/Rwstrobe/CodeContextExtractor.git
 cd CodeContextExtractor
@@ -52,59 +50,12 @@ npm run build
 npm link
 ```
 
-### Step 2: Go to your project folder
-```bash
-cd C:\projects\MyNewProject
-```
-
-### Step 3: Generate the context file
+Run the linked CLI:
 ```bash
 code-context-extractor extract . --verbose
 ```
 
-The output will be saved to:
-```
-.\code-context\MyNewProject_context_YYYY-MM-DD_HHMMSS.txt
-```
-
-### macOS/Linux variant
-You can follow the same steps with a Unix-style path:
-```bash
-cd ~/projects/MyNewProject
-code-context-extractor extract . --verbose
-```
-The output will be saved to:
-```
-./code-context/MyNewProject_context_YYYY-MM-DD_HHMMSS.txt
-```
-
-## Install from GitHub (beginner-friendly)
-1. Clone the repository:
-```bash
-git clone https://github.com/Rwstrobe/CodeContextExtractor.git
-```
-2. Enter the project folder:
-```bash
-cd CodeContextExtractor
-```
-3. Install dependencies:
-```bash
-npm install
-```
-4. Build the CLI:
-```bash
-npm run build
-```
-5. Link the CLI so it is available on your PATH:
-```bash
-npm link
-```
-6. Run the extractor:
-```bash
-code-context-extractor extract . --verbose
-```
-
-If you prefer, you can run the built CLI directly:
+Or run the built CLI directly:
 ```bash
 node dist/cli.js extract . --verbose
 ```
@@ -152,7 +103,7 @@ Each output file contains:
 - Metadata header (root path, timestamp, tool version, command, config summary)
 - Folder tree (depth-limited)
 - Included files summary (count and total size)
-- Skipped files with reasons (excluded, too large, binary, unreadable)
+- Skipped files summary (total, by reason, top roots)
 - For each included file: path, size, last modified, and contents in fenced blocks
 
 ## Redaction
@@ -233,6 +184,21 @@ npm run build
 npm test
 ```
 
+## FAQ
+**Does this upload my repo or call any APIs?**  
+No. It is local-only, with no network calls or telemetry.
+
+**Why use npx?**  
+`npx` runs the CLI without a global install. It will download the package if needed.
+
+**Why are `.git` and `node_modules` excluded?**  
+They add a lot of noise and size without improving architectural context.
+
+**The output is huge. How do I reduce it?**  
+Use `--depth`, `--max-bytes`, and more `--exclude` globs, or add a config file.
+
 ## License
 MIT
+
+
 
