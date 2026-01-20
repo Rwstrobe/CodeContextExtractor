@@ -1,6 +1,6 @@
 {
   "name": "code-context-extractor",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Local-only CLI tool to extract codebase context into a single text or Markdown file.",
   "license": "MIT",
   "author": "Open Source Contributors",
